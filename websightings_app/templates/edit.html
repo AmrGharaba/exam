@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Sighting</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body id="edit">
+    <div class="container">
+        <div class="header">
+            <ul>
+                <li><h1>Sasquash Sightings</h1></li>
+                <li>Edit this Sighting</li>
+            </ul>
+            <ul>
+                <li>{{current_user.first_name}} {{current_user.last_name}}</li>
+                <li><a href="/dashboard">DashBoard</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+        <div>
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form action="/sightings/edit_process/{{sighting.id}}" method="post">{% csrf_token %}
+                <div>
+                    <label for="location">Location : </label>
+                    <input type="text" name="location" id="location" class="field" value="{{sighting.location}}">
+                </div>
+                <div>
+                    <label for="date">Date of sighting : </label>
+                    <input type="date" name="date" id="date" class="field" value="{{sighting.date}}">
+                </div>
+                <div>
+                    <label for="number">Number of Sasquashes : </label>
+                    <input type="number" name="number" id="number" class="field" value="{{sighting.number}}">
+                </div>
+                <div>
+                    <label for="desc">What Happened? </label>
+                    <!-- <input style="width: 300px; height: 100px;" type="text" name="desc" id="desc" value = "{{sighting.desc}}" placeholder="{{sighting.desc}}" class="field"> -->
+                    <textarea name="desc" id="desc" cols="30" rows="10" class="field" value = "{{sighting.desc}}" placeholder="{{sighting.desc}}"></textarea>
+                </div>
+                <input type="submit" name="submit" class="button" value="Report">
+    
+            </form
+
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+    
+</body>
+</html>

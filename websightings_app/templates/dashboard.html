@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <title>User Dashboard</title>
+</head>
+<body id="dashboard">
+    <div class="container">
+        <div class="header">
+            <ul>
+                <li><h1>Sasquash Sightings</h1></li>
+                <li>Reported sightings</li>
+            </ul>
+            <ul>
+                <li>{{current_user.first_name}} {{current_user.last_name}}</li>
+                <li><a href="/sightings/new">Report a sighting</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+        <div class="mid">
+            <table>
+                {% if sightings %}
+                    {% for sighting in sightings %}
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>{{sighting.location}}</li>
+                                    <li style="color: magenta;">Skeptics: {{len.sighting.skeptic.all}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>{{sighting.date}}</li>
+                                    <li>Reported by : {{sighting.my_user.first_name}} {{sighting.my_user.last_name}}</li>
+                                </ul>
+                                <div>
+                                    <a href="/sightings/{{sighting.id}}">View</a>
+                                    {% if current_user.id == sighting.my_user.id %}
+                                        <a href="/sightings/edit/{{sighting.id}}">Edit</a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
+            
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+</body>
+</html>
