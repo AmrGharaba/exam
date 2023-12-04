@@ -11,5 +11,6 @@ urlpatterns = [
     path('sightings/edit/<id>',views.edit_form),
     path('sightings/edit_process/<id>', views.edit_process),
     path('logout',views.logout),
-    path('skeptic/<id>',views.add_skeptic)
+    path('skeptic/<id>',views.add_skeptic),
+    path('delete/<id>',views.delete)
 ]

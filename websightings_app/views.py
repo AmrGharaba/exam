@@ -124,3 +124,9 @@ def add_skeptic(request,id):
     elif request.POST['which_form'] == 'remove':
         sighting.skeptic.remove(user)
     return redirect(f'/sightings/{id}')
+
+def delete(request, id):
+    sighting = Sighting.objects.get(id = id)
+    if sighting.my_user == User.objects.get(id = request.session['login_id']):
+        sighting.delete()
+    return redirect('/dashboard')
